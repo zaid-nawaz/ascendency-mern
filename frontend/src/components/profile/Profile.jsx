@@ -18,7 +18,7 @@ function Profile() {
 
     useEffect(() => {
       const getCurrentuser = async () => {
-        const response = await axios.get("http://localhost:8000/api/users/current-user", { withCredentials: true })
+        const response = await axios.get("/api/users/current-user", { withCredentials: true })
         if(response.data.data.username !== userName){
           setParamDiff(true)
         }else{
@@ -30,7 +30,7 @@ function Profile() {
 
     useEffect(() => {
       const getProfileData = async () => {
-        const response = await axios.post("http://localhost:8000/api/users/profile-user", { userName })
+        const response = await axios.post("/api/users/profile-user", { userName })
         setUsername(response.data.data.username)
         setProfilepic(response.data.data.profilePic)
       }
@@ -40,14 +40,14 @@ function Profile() {
     useEffect(() => {
       if (!paramDiff) {
         const fetchUserContent = async () => {
-          const response = await axios.get("http://localhost:8000/api/contents/user-content", { withCredentials: true })
+          const response = await axios.get("/api/contents/user-content", { withCredentials: true })
           setAnybodycontent([])
           setContent(response.data)
         }
         fetchUserContent()
       } else {
         const fetchContent = async () => {
-          const response = await axios.post("http://localhost:8000/api/contents/other-user-content", { userName })
+          const response = await axios.post("/api/contents/other-user-content", { userName })
           setContent([])
           setAnybodycontent(response.data)
         }
@@ -57,7 +57,7 @@ function Profile() {
 
     const handleFollow = async (e) => {
       e.preventDefault()
-      const response = await axios.post("http://localhost:8000/api/users/handle-follow", { userName }, { withCredentials: true })
+      const response = await axios.post("/api/users/handle-follow", { userName }, { withCredentials: true })
       if(response.status === 200){
         setIsfollow(true)
         setFollower(follower + 1)
@@ -66,7 +66,7 @@ function Profile() {
 
     const handleUnfollow = async (e) => {
       e.preventDefault()
-      const response = await axios.post("http://localhost:8000/api/users/handle-unfollow", { userName }, { withCredentials: true })
+      const response = await axios.post("/api/users/handle-unfollow", { userName }, { withCredentials: true })
       if(response.status === 200){
         setIsfollow(false)
         setFollower(follower - 1)
@@ -75,7 +75,7 @@ function Profile() {
 
     useEffect(() => {
       const fetchUserFollow = async () => {
-        const response = await axios.get(`http://localhost:8000/api/users/c/${userName}`, { withCredentials: true })
+        const response = await axios.get(`/api/users/c/${userName}`, { withCredentials: true })
         if(response.status === 200){
           setUserData(response.data)
           setIsfollow(response.data.isFollowed)

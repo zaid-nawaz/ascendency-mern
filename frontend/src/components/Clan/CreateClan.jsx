@@ -8,7 +8,7 @@ function CreateClan() {
     const navigate = useNavigate()
     const handleCreation = async (e) => {
         e.preventDefault();
-        const response = await axios.post("http://localhost:8000/api/users/create-clan", {
+        const response = await axios.post("/api/users/create-clan", {
             name,
             price
         }, { withCredentials: true });

@@ -13,7 +13,7 @@ function Feed() {
         if (userState.isLogin) {
             const fetchPosts = async () => {
                 try {
-                    const response = await axios.get("http://localhost:8000/api/contents/get-feed", {
+                    const response = await axios.get("/api/contents/get-feed", {
                         withCredentials: true,
                     });
                     if (response.status === 200) {

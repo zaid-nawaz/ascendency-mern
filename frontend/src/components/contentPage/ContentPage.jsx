@@ -10,7 +10,7 @@ function ContentPage() {
         const getContentData = async () => {
             try {
                 const response = await axios.post(
-                    "http://localhost:8000/api/contents/get-content-data",
+                    "/api/contents/get-content-data",
                     {
                         username,
                         contentid

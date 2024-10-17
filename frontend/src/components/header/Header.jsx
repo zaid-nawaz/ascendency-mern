@@ -36,7 +36,7 @@ function Header() {
   const dispatch = useDispatch()
   const handleSearch = async (e) => {
     e.preventDefault();
-    const response = await axios.post("http://localhost:8000/api/users/handle-search",{
+    const response = await axios.post("/api/users/handle-search",{
       search
     })
     if(response.status === 200){
@@ -45,7 +45,7 @@ function Header() {
   }
   const handleLogout = async (e) => {
     e.preventDefault();
-    const response = await axios.get("http://localhost:8000/api/users/logout",{withCredentials : true});
+    const response = await axios.get("/api/users/logout",{withCredentials : true});
     
     if(response.status === 200){
       dispatch(checkingLogin(false))
@@ -56,7 +56,7 @@ function Header() {
 
   if(userState.isLogin){
     const getUserData = async (e) => {
-    const response = await axios.get("http://localhost:8000/api/users/current-user",{withCredentials : true})
+    const response = await axios.get("/api/users/current-user",{withCredentials : true})
     if(response.status === 200){
       setUsername(response.data.data.username);
     }

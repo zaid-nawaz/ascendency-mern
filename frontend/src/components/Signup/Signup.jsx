@@ -20,7 +20,7 @@ function Signup() {
         
         
 try {
-    const response = await axios.post('http://localhost:8000/api/users/signup', formdata, {
+    const response = await axios.post('/api/users/signup', formdata, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },

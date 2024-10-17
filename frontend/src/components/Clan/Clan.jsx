@@ -14,7 +14,7 @@ function Clan() {
     const userstate = useSelector(state => state.userState)
     const handleSearch = async (e) => {
         e.preventDefault();
-        const response = await axios.post("http://localhost:8000/api/users/handle-clan-search", {
+        const response = await axios.post("/api/users/handle-clan-search", {
             search,
         });
         if (response.status === 200) {
@@ -24,7 +24,7 @@ function Clan() {
 
     const joinClan = async (e) => {
         const clanName = e.target.value;
-        const response = await axios.post("http://localhost:8000/api/users/join-clan", {
+        const response = await axios.post("/api/users/join-clan", {
             clanName,
         }, { withCredentials: true });
         if (response.status === 200) {
@@ -34,7 +34,7 @@ function Clan() {
 
     useEffect(() => {
         const joinedClans = async () => {
-            const response = await axios.get("http://localhost:8000/api/users/get-clan", { withCredentials: true });
+            const response = await axios.get("/api/users/get-clan", { withCredentials: true });
             if (response.status === 200) {
                 setClans(response.data);
             }
@@ -44,7 +44,7 @@ function Clan() {
 
     const handleChat = async (e) => {
         e.preventDefault();
-        const response = await axios.post("http://localhost:8000/api/users/send-messages", {
+        const response = await axios.post("/api/users/send-messages", {
             chat,
             showClan,
         }, { withCredentials: true });
@@ -58,7 +58,7 @@ function Clan() {
     };
 
     const getClanChats = async (clan) => {
-        const response = await axios.post("http://localhost:8000/api/users/get-clan-messages", {
+        const response = await axios.post("/api/users/get-clan-messages", {
             clan,
         }, { withCredentials: true });
         if (response.status === 200) {

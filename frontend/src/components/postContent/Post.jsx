@@ -18,14 +18,14 @@ function Post() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const newResponse = await axios.get("http://localhost:8000/api/users/current-user", { withCredentials: true });
+        const newResponse = await axios.get("/api/users/current-user", { withCredentials: true });
         
         if (newResponse.status === 200) {
             dispatch(loginUser(newResponse.data.data));
         }
         
         if (newResponse.data.data.postLimit > 0) {
-            const response = await axios.post("http://localhost:8000/api/contents/post-content", formdata, {
+            const response = await axios.post("/api/contents/post-content", formdata, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
